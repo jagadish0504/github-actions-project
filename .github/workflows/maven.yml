@@ -40,6 +40,22 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=jagadish0504_github-actions-project -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      
+      
+    - name: Deploy to JFrog Artifactory
+      uses: jfrog/setup-jfrog-cli@v1
+      with:
+        server-id: my-artifactory-server
+        url: https://githubactionsproject.jfrog.io/artifactory
+        username: ${{ secrets.ARTIFACTORY_USERNAME }}
+        password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+        
+    - name: uploading to jfrog  
+      run: |
+        jfrog rt u target/*.jar my-repo
+        
+        
+        
    
     - name: Creating staging folder 
       run: mkdir staging && cp target/*.jar staging
