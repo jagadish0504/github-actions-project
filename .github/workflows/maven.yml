@@ -1,4 +1,4 @@
-name: Java spring boot app
+name: Java CI/CD with Maven, SonarCloud, Docker
 
 on:
   push:
