@@ -20,6 +20,14 @@ jobs:
         
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      
+    - name: list the current directory
+      run: ls -a
+      
+    - name: move into target folder
+      run: |
+        cd target
+        ls -a
         
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v6
