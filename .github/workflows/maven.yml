@@ -41,16 +41,14 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=jagadish0504_github-actions-project -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
       
-    - name: Download JFrog CLI
-      run: curl -fL https://getcli.jfrog.io | sh 
-     
-    - name: Upload to Artifactory
-      env:
-        JFROG_CLI_OFFER_CONFIG: false
-        JFROG_CLI_BUILD_NAME: ${{ github.repository }}
-        JFROG_CLI_BUILD_NUMBER: ${{ github.sha }}
-      run: |
-        jfrog rt u target/*.jar my-repo --url https://githubactionsproject.jfrog.io/artifactory --user ${{ secrets.ARTIFACTORY_USERNAME }} --password ${{ secrets.ARTIFACTORY_PASSWORD }}
+    - name: Setup JFrog CLI
+      uses: jfrog/setup-jfrog-cli@v1
+      with:
+        jfrog-cli-version: '1.47.1'
+        
+    
+    - name: Upload JAR to JFrog Artifactory
+      run: jfrog rt u target/*.jar . --url https://githubactionsproject.jfrog.io/artifactory --user ${{ secrets.ARTIFACTORY_USERNAME }} --password ${{ secrets.ARTIFACTORY_PASSWORD }}
         
         
         
