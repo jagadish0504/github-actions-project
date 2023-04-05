@@ -25,7 +25,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
         image: jagadish0504/caliculator-repo
-        tags: latest
+        tags: latest2
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
