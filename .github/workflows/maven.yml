@@ -44,7 +44,7 @@ jobs:
     - name: Setup JFrog CLI
       uses: jfrog/setup-jfrog-cli@v1
       with:
-        jfrog-cli-version: '1.47.1'
+        version: 1.47.1
         
     
     - name: Upload JAR to JFrog Artifactory
