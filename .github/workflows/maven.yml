@@ -48,7 +48,7 @@ jobs:
         
     
     - name: Upload JAR to JFrog Artifactory
-      run: jfrog rt u target/*.jar my-repo --url https://githubactionsproject.jfrog.io/ui/admin/repositories/local/ --user ${{ secrets.ARTIFACTORY_USERNAME }} --password ${{ secrets.ARTIFACTORY_PASSWORD }}
+      run: jfrog rt u target/*.jar my-repo --url https://githubactionsproject.jfrog.io/artifactory/ --user ${{ secrets.ARTIFACTORY_USERNAME }} --password ${{ secrets.ARTIFACTORY_PASSWORD }}
         
         
         
